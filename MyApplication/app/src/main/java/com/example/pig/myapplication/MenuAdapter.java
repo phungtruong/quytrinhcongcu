@@ -34,8 +34,10 @@ public class MenuAdapter extends ArrayAdapter<MonAn> {
     }
     private View setUpView(View convertView, int position)
     {
-	//Mon an: ten + hinh anh + gia + mo ta + so luong de order - Binh
-	
+	//Mon an: ten + hinh anh + gia + mo ta + so luong de order
+	//Thay doi textview So luong thi textview Gia cung thay doi theo de phu hop
+	//Binh da chinh sua
+
         final TextView tvTen = (TextView)convertView.findViewById(R.id.tvTen);
         final TextView tvMota = (TextView)convertView.findViewById(R.id.tvMota);
         final TextView tvGia = (TextView)convertView.findViewById(R.id.tvGiaTien);
