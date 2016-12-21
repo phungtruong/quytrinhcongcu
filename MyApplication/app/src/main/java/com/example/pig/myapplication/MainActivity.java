@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"3", Toast.LENGTH_SHORT).show();
         try
         {
-            adapter = new MenuAdapter(this, R.id.customList, menu);
+            adapter = new MenuAdapter(this, R.layout.custom_listview, menu);
             lvMenu.setAdapter(adapter);
         }
         catch (Exception e)

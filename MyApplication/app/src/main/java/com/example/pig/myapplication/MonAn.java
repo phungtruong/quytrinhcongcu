@@ -1,17 +1,16 @@
-﻿package com.example.pig.myapplication;
+package com.example.pig.myapplication;
 
 /**
  * Created by Pig on 12/7/2016.
  */
 
-//Class đại diện cho từng món ăn trong menu
 public class MonAn {
-    private int ID; 
-    private String ten; // tên món ăn
-    private String moTa; // Mô tả cho món ăn
+    private int ID;
+    private String ten;
+    private String moTa;
     private int hinhAnh; // id hình ảnh
-    private String soTien; //Giá của món ăn
-    
+    private String soTien;
+
     public int getID() {
         return ID;
     }
