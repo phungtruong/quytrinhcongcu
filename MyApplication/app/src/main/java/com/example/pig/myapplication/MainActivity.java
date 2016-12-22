@@ -1,35 +1,40 @@
 package com.example.pig.myapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-
-import static com.example.pig.myapplication.R.id.lvMenu;
+import android.widget.TabHost;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<MonAn> menu;
-    ListView lvMenu;
-    MenuAdapter adapter = null;
+    public static final int FRAGMENT_COUNT = 2;
+    TextView tvTitle;
+    ViewPager mPaper;
+    MyPaperViewAdapter mAdapter;
+    TabHost tabHost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Tạo menu demo
-        DemoMenu d = new DemoMenu(this);
-        d.createDemoMenu();
-        menu = new ArrayList<MonAn>();
-        menu = d.getDemoMenu();
+        //Dùng để ẩn action bar
+        ActionBar ac = getSupportActionBar();
+        ac.hide();
+        tvTitle = (TextView) findViewById(R.id.tvtitle);
+        tabHost = (TabHost)findViewById(R.id.tabHost);
+        tabHost.setup();
 
-        //Lấy ID listview
-        //Tạo MenuAdapter
-        //Gắn menu_adapter vào listview
-        lvMenu = (ListView)findViewById(R.id.lvMenu);
-        adapter = new MenuAdapter(this, R.layout.custom_listview, menu);
-        lvMenu.setAdapter(adapter);
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tabMenu");
+        tabSpec.setContent(R.id.tab1);
+        tabSpec.setIndicator("THỰC ĐƠN");
+        tabHost.addTab(tabSpec);
+
+        mAdapter = new MyPaperViewAdapter(getSupportFragmentManager());
+        mPaper = (ViewPager)findViewById(R.id.paper);
+        mPaper.setAdapter(mAdapter);
     }
 
 }
