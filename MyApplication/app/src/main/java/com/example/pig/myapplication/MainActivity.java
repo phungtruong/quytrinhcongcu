@@ -32,9 +32,61 @@ public class MainActivity extends AppCompatActivity {
         tabSpec.setIndicator("THỰC ĐƠN");
         tabHost.addTab(tabSpec);
 
+        tabSpec = tabHost.newTabSpec("tabCart");
+        tabSpec.setContent(R.id.tab2);
+
+        tabSpec.setIndicator("GIỎ HÀNG");
+        tabHost.addTab(tabSpec);
+        //tabHost.setCurrentTab(1);
         mAdapter = new MyPaperViewAdapter(getSupportFragmentManager());
         mPaper = (ViewPager)findViewById(R.id.paper);
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                if(s.equals("tabMenu"))
+                {
+                    mPaper.setCurrentItem(0);
+                }
+                else if(s.equals("tabCart"))
+                {
+                    mPaper.setCurrentItem(1);
+                }
+            }
+        });
+
+        TextView tv =  (TextView)tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
+        tv.setTextColor(Color.parseColor("#ffffff"));
+        tv =  (TextView)tabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
+        tv.setTextColor(Color.parseColor("#ffffff"));
+
+
+        mPaper.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tabHost.setCurrentTab(position);
+                if(position == 0)
+                {
+                    tvTitle.setText("Thực đơn hôm nay");
+                }
+                else if(position == 1)
+                {
+                    tvTitle.setText("Giỏ hàng của bạn");
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         mPaper.setAdapter(mAdapter);
+
     }
 
 }

@@ -115,6 +115,19 @@
             android:textAllCaps="false"
             android:layout_weight="0.84" />
 
+        <!--<EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/edtSoluong"
+
+            android:textStyle="normal|bold|italic"
+            android:hint="Nhập vào số lượng"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:layout_weight="0.19" />-->
+
         <Button
             android:text="Bỏ vào giỏ hàng"
             android:layout_width="match_parent"

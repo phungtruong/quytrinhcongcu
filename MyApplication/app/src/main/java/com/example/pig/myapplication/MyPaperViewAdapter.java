@@ -16,7 +16,12 @@ public class MyPaperViewAdapter extends FragmentPagerAdapter {
     }
     @Override
     public Fragment getItem(int position) {
-        return FoodMenuFragment.getnewInstance();
+        switch (position)
+        {
+            case 0: return FoodMenuFragment.getnewInstance();
+            case 1: return CartFragment.getnewInstance();
+            default: return null;
+        }
     }
 
     @Override
