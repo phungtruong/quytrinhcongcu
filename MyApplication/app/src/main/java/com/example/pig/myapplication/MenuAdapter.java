@@ -28,6 +28,9 @@ public class MenuAdapter extends ArrayAdapter<MonAn> {
     ArrayList<MonAn> myArray = null;
     int layoutID;
 
+    //List giỏ hàng
+    ArrayList<GioHang> listGioHang;
+
     public MenuAdapter(Activity context, int layoutID
                 ,ArrayList<MonAn>myArray)
     {
@@ -35,6 +38,7 @@ public class MenuAdapter extends ArrayAdapter<MonAn> {
         this.context = context;
         this.myArray = myArray;
         this.layoutID = layoutID;
+        listGioHang = new ArrayList<>();
     }
     private View setUpView(View convertView, int position)
     {
@@ -50,7 +54,7 @@ public class MenuAdapter extends ArrayAdapter<MonAn> {
         final MonAn m = myArray.get(position);
         tvTen.setText(m.getTen());
         tvMota.setText(m.getMoTa());
-        tvGia.setText(m.getSoTien());
+        tvGia.setText(m.getSoTien()+" VNĐ");
         ivHinh.setImageResource(m.getHinhAnh());
 
         btnMinus.setOnClickListener(new View.OnClickListener() {
@@ -76,11 +80,44 @@ public class MenuAdapter extends ArrayAdapter<MonAn> {
         btnBovaogiohang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+
+                int pos = findIndexListGioHang(m);
+                if(pos != -1)
+                {
+                    listGioHang.get(pos).setSoLuong(Integer.parseInt(tvSoLuong.getText()+""));
+                }
+                else
+                {
+                    GioHang giohang = new GioHang(m.getID(),
+                            m.getTen(),
+                            Integer.parseInt(tvSoLuong.getText()+""),
+                            m.getSoTien());
+                    listGioHang.add(giohang);
+                }
+
             }
         });
         return  convertView;
     }
+    //Hàm dùng để tìm kiếm index của một item trong listGioHang
+    int findIndexListGioHang(MonAn m)
+    {
+        for(int i =0; i < listGioHang.size(); i++)
+        {
+            if(listGioHang.get(i).getTen().equals(m.getTen()))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    //Hàm lấy tên listGioHang
+    ArrayList<GioHang> getListGioHang()
+    {
+        return listGioHang;
+    }
+
+
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

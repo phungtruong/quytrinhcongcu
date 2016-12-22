@@ -31,28 +31,28 @@ public class DemoMenu {
         if(!isDatabaseCreated)
         {
             if(dtHelper.insertDataToFoodMenu("Gà nướng",
-                    R.drawable.ganuong, 12, "150.000 VNĐ",
+                    R.drawable.ganuong, 12, 150000,
                     "Đây là món ăn ngon nhất của nhà hàng chúng tôi.") == -1)
             {
                 Toast.makeText(context, "Có lỗi xẩy ra khi insert data", Toast.LENGTH_SHORT).show();
                 return;
             }
             if(dtHelper.insertDataToFoodMenu("Rau muống xào",
-                    R.drawable.raumuongxao, 12, "10.000 VNĐ",
+                    R.drawable.raumuongxao, 12, 10000,
                     "Đây là món ăn ngon nhất của nhà hàng chúng tôi.") == -1)
             {
                 Toast.makeText(context, "Có lỗi xẩy ra khi insert data", Toast.LENGTH_SHORT).show();
                 return;
             }
             if(dtHelper.insertDataToFoodMenu("Heo quay",
-                    R.drawable.heoquay, 12, "150.000 VNĐ",
+                    R.drawable.heoquay, 12, 150000,
                     "Đây là món ăn ngon nhất của nhà hàng chúng tôi.") == -1)
             {
                 Toast.makeText(context, "Có lỗi xẩy ra khi insert data", Toast.LENGTH_SHORT).show();
                 return;
             }
             if(dtHelper.insertDataToFoodMenu("Thịt kho",
-                    R.drawable.thitkho, 12, "20.000 VNĐ",
+                    R.drawable.thitkho, 12, 20000,
                     "Đây là món ăn ngon nhất của nhà hàng chúng tôi.") == -1)
             {
                 Toast.makeText(context, "Có lỗi xẩy ra khi insert data", Toast.LENGTH_SHORT).show();
@@ -74,7 +74,7 @@ public class DemoMenu {
                 MonAn m = new MonAn();
                 m.setTen(c.getString(c.getColumnIndex(FoodOrderContract.FoodMenu.COLUMN_NAME_TEN_MON_AN)));
                 m.setHinhAnh(c.getInt(c.getColumnIndex(FoodOrderContract.FoodMenu.COLUMN_NAME_HINH_ANH)));
-                m.setSoTien(c.getString(c.getColumnIndex(FoodOrderContract.FoodMenu.COLUMN_NAME_GIA_TIEN)));
+                m.setSoTien(c.getInt(c.getColumnIndex(FoodOrderContract.FoodMenu.COLUMN_NAME_GIA_TIEN)));
                 m.setMoTa(c.getString(c.getColumnIndex(FoodOrderContract.FoodMenu.COLUMN_NAME_MO_TA)));
                 lMonAn.add(m);
                 isNotEmpty = c.moveToNext();

@@ -13,18 +13,13 @@ import java.util.ArrayList;
 
 public class FoodMenuFragment extends Fragment {
 
-    //
-    OnDataExchangeListener mCallback;
 
     ListView lvMenu;
     MenuAdapter adapter = null;
     ArrayList<MonAn> menu;
 
-
-    //OnDataExchangeListener
-    public interface OnDataExchangeListener
-    {
-        void dataExchange();
+    public MenuAdapter getAdapter() {
+        return adapter;
     }
 
     public static FoodMenuFragment getnewInstance()

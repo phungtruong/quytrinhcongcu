@@ -32,7 +32,7 @@ public class FoodOrderDatabaseHelper extends SQLiteOpenHelper {
                     FoodOrderContract.FoodMenu.COLUMN_NAME_TEN_MON_AN + TEXT_TYPE + COMMA_SEP +
                     FoodOrderContract.FoodMenu.COLUMN_NAME_MO_TA + TEXT_TYPE + COMMA_SEP +
                     FoodOrderContract.FoodMenu.COLUMN_NAME_HINH_ANH + INTEGER_TYPE + COMMA_SEP +
-                    FoodOrderContract.FoodMenu.COLUMN_NAME_GIA_TIEN + TEXT_TYPE + COMMA_SEP +
+                    FoodOrderContract.FoodMenu.COLUMN_NAME_GIA_TIEN + INTEGER_TYPE + COMMA_SEP +
                     FoodOrderContract.FoodMenu.COLUMN_NAME_SO_LUONG + INTEGER_TYPE + " )";
 
     //Private constructor
@@ -65,7 +65,7 @@ public class FoodOrderDatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Hàm dùng để thêm một dòng dữ liệu vào table Food Menu
-    public long insertDataToFoodMenu(String tenMonAn, int hinhAnh, int soLuong, String giaTien, String moTa) {
+    public long insertDataToFoodMenu(String tenMonAn, int hinhAnh, int soLuong, int giaTien, String moTa) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(FoodOrderContract.FoodMenu.COLUMN_NAME_TEN_MON_AN, tenMonAn);

@@ -2,14 +2,20 @@ package com.example.pig.myapplication;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ArrayList<GioHang> listGioHang;
+    public static final String LIST_GIO_HANG = "listGioHang";
     public static final int FRAGMENT_COUNT = 2;
     TextView tvTitle;
     ViewPager mPaper;
@@ -19,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        listGioHang = new ArrayList<>();
 
         //Dùng để ẩn action bar
         ActionBar ac = getSupportActionBar();
@@ -42,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mPaper = (ViewPager)findViewById(R.id.paper);
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
-            public void onTabChanged(String s) {
+            public void onTabChanged(final String s) {
                 if(s.equals("tabMenu"))
                 {
                     mPaper.setCurrentItem(0);
@@ -50,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 else if(s.equals("tabCart"))
                 {
                     mPaper.setCurrentItem(1);
+                    listGioHang = mAdapter.getFoodMenuFragment().getAdapter().getListGioHang();
+                    CartFragment c = mAdapter.getCartFragment();
+                    c.setListGiohang(listGioHang);
+                    //Toast.makeText(MainActivity.this, c.getListGiohang().size() + "", Toast.LENGTH_SHORT).show();
+                    c.getAdapter().notifyDataSetChanged();
+                    c.caculateMoney();
                 }
             }
         });

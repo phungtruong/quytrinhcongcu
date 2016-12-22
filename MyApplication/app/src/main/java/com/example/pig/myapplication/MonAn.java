@@ -9,7 +9,7 @@ public class MonAn {
     private String ten;
     private String moTa;
     private int hinhAnh; // id hình ảnh
-    private String soTien;
+    private int soTien;
 
     public int getID() {
         return ID;
@@ -43,11 +43,11 @@ public class MonAn {
         this.hinhAnh = hinhAnh;
     }
 
-    public String getSoTien() {
+    public int getSoTien() {
         return soTien;
     }
 
-    public void setSoTien(String soTien) {
+    public void setSoTien(int soTien) {
         this.soTien = soTien;
     }
 }
